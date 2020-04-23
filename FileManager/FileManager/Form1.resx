@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="but_Load_from_DB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>561, 42</value>
+    <value>584, 42</value>
   </data>
   <data name="but_Load_from_DB.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 45</value>
@@ -144,7 +144,7 @@
     <value>3</value>
   </data>
   <data name="but_Load_from_Catalog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>561, 93</value>
+    <value>584, 93</value>
   </data>
   <data name="but_Load_from_Catalog.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 45</value>
@@ -168,7 +168,7 @@
     <value>2</value>
   </data>
   <data name="but_Synchronize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>561, 144</value>
+    <value>584, 144</value>
   </data>
   <data name="but_Synchronize.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 45</value>
@@ -197,6 +197,12 @@
   <data name="FileName.HeaderText" xml:space="preserve">
     <value>Имя файла</value>
   </data>
+  <data name="FileName.MinimumWidth" type="System.Int32, mscorlib">
+    <value>140</value>
+  </data>
+  <data name="FileName.Width" type="System.Int32, mscorlib">
+    <value>140</value>
+  </data>
   <metadata name="FileSize.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -204,7 +210,7 @@
     <value>Длина</value>
   </data>
   <data name="FileSize.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>43</value>
   </data>
   <metadata name="FileChanged.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -212,20 +218,32 @@
   <data name="FileChanged.HeaderText" xml:space="preserve">
     <value>Дата изменения</value>
   </data>
+  <data name="FileChanged.MinimumWidth" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
+  <data name="FileChanged.Width" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
   <metadata name="FileCreated.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="FileCreated.HeaderText" xml:space="preserve">
     <value>Дата создания</value>
   </data>
+  <data name="FileCreated.MinimumWidth" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
+  <data name="FileCreated.Width" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
   <data name="MyDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 16</value>
+    <value>10, 10</value>
   </data>
   <data name="MyDataGridView.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>5</value>
   </data>
   <data name="MyDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 401</value>
+    <value>560, 430</value>
   </data>
   <data name="MyDataGridView.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>

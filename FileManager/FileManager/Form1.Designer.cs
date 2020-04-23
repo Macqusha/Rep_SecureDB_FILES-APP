@@ -65,12 +65,14 @@
             // MyDataGridView
             // 
             this.MyDataGridView.BackgroundColor = System.Drawing.Color.MintCream;
+            this.MyDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.MyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MyDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FileName,
             this.FileSize,
             this.FileChanged,
             this.FileCreated});
+            this.MyDataGridView.GridColor = System.Drawing.Color.DarkSlateGray;
             resources.ApplyResources(this.MyDataGridView, "MyDataGridView");
             this.MyDataGridView.Name = "MyDataGridView";
             this.MyDataGridView.RowTemplate.Height = 24;
