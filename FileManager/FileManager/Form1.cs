@@ -34,9 +34,9 @@ namespace FileManager
             NpgsqlCommand npgSqlCommand1 = new NpgsqlCommand("SELECT * FROM public.\"PoemsTable\"", npgSqlConnection1);
             NpgsqlDataReader npgSqlDataReader1 = npgSqlCommand1.ExecuteReader();
 
+            MyDataGridView.RowCount = 1;
             if (npgSqlDataReader1.HasRows)
             {
-                MyDataGridView.RowCount = 1;
                 foreach (DbDataRecord dbDataRecord in npgSqlDataReader1)
                 {
                     MyDataGridView.RowCount++;
