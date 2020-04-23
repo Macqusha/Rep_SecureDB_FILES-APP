@@ -33,7 +33,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileChanged = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -61,25 +66,55 @@
             this.button4.Name = "button4";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // dataGridView1
             // 
-            this.listView1.BackColor = System.Drawing.Color.MintCream;
-            this.listView1.HideSelection = false;
-            resources.ApplyResources(this.listView1, "listView1");
-            this.listView1.Name = "listView1";
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.MintCream;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FileName,
+            this.FileSize,
+            this.FileChanged,
+            this.FileCreated});
+            resources.ApplyResources(this.dataGridView1, "dataGridView1");
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            // 
+            // FileName
+            // 
+            resources.ApplyResources(this.FileName, "FileName");
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            // 
+            // FileSize
+            // 
+            resources.ApplyResources(this.FileSize, "FileSize");
+            this.FileSize.Name = "FileSize";
+            this.FileSize.ReadOnly = true;
+            // 
+            // FileChanged
+            // 
+            resources.ApplyResources(this.FileChanged, "FileChanged");
+            this.FileChanged.Name = "FileChanged";
+            this.FileChanged.ReadOnly = true;
+            // 
+            // FileCreated
+            // 
+            resources.ApplyResources(this.FileCreated, "FileCreated");
+            this.FileCreated.Name = "FileCreated";
+            this.FileCreated.ReadOnly = true;
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::FileManager.Properties.Resources.main_background;
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -89,7 +124,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileChanged;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileCreated;
     }
 }
 
