@@ -16,5 +16,20 @@ namespace FileManager
         {
             InitializeComponent();
         }
+
+        private void but_Load_from_DB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void but_Load_from_Catalog_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void but_Synchronize_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

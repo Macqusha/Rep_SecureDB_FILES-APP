@@ -29,55 +29,51 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.but_Load_from_DB = new System.Windows.Forms.Button();
+            this.but_Load_from_Catalog = new System.Windows.Forms.Button();
+            this.but_Synchronize = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileChanged = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // but_Load_from_DB
             // 
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.but_Load_from_DB.ForeColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.but_Load_from_DB, "but_Load_from_DB");
+            this.but_Load_from_DB.Name = "but_Load_from_DB";
+            this.but_Load_from_DB.UseVisualStyleBackColor = true;
+            this.but_Load_from_DB.Click += new System.EventHandler(this.but_Load_from_DB_Click);
             // 
-            // button2
+            // but_Load_from_Catalog
             // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.but_Load_from_Catalog, "but_Load_from_Catalog");
+            this.but_Load_from_Catalog.Name = "but_Load_from_Catalog";
+            this.but_Load_from_Catalog.UseVisualStyleBackColor = true;
+            this.but_Load_from_Catalog.Click += new System.EventHandler(this.but_Load_from_Catalog_Click);
             // 
-            // button3
+            // but_Synchronize
             // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.but_Synchronize, "but_Synchronize");
+            this.but_Synchronize.Name = "but_Synchronize";
+            this.but_Synchronize.UseVisualStyleBackColor = true;
+            this.but_Synchronize.Click += new System.EventHandler(this.but_Synchronize_Click);
             // 
-            // button4
+            // dataGridView
             // 
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.MintCream;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView.BackgroundColor = System.Drawing.Color.MintCream;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FileName,
             this.FileSize,
             this.FileChanged,
             this.FileCreated});
-            resources.ApplyResources(this.dataGridView1, "dataGridView1");
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
+            resources.ApplyResources(this.dataGridView, "dataGridView");
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 24;
             // 
             // FileName
             // 
@@ -108,23 +104,21 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::FileManager.Properties.Resources.main_background;
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.but_Synchronize);
+            this.Controls.Add(this.but_Load_from_Catalog);
+            this.Controls.Add(this.but_Load_from_DB);
             this.Name = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button but_Load_from_DB;
+        private System.Windows.Forms.Button but_Load_from_Catalog;
+        private System.Windows.Forms.Button but_Synchronize;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileChanged;
