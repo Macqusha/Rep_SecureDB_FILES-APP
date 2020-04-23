@@ -194,42 +194,6 @@
   <metadata name="FileName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="FileSize.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FileChanged.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FileCreated.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="dataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 16</value>
-  </data>
-  <data name="dataGridView.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="dataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 401</value>
-  </data>
-  <data name="dataGridView.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.Name" xml:space="preserve">
-    <value>dataGridView</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="FileName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="FileName.HeaderText" xml:space="preserve">
     <value>Имя файла</value>
   </data>
@@ -237,10 +201,10 @@
     <value>True</value>
   </metadata>
   <data name="FileSize.HeaderText" xml:space="preserve">
-    <value>Размер файла</value>
+    <value>Длина</value>
   </data>
   <data name="FileSize.Width" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>50</value>
   </data>
   <metadata name="FileChanged.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -253,6 +217,30 @@
   </metadata>
   <data name="FileCreated.HeaderText" xml:space="preserve">
     <value>Дата создания</value>
+  </data>
+  <data name="MyDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 16</value>
+  </data>
+  <data name="MyDataGridView.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="MyDataGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>503, 401</value>
+  </data>
+  <data name="MyDataGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;MyDataGridView.Name" xml:space="preserve">
+    <value>MyDataGridView</value>
+  </data>
+  <data name="&gt;&gt;MyDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MyDataGridView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MyDataGridView.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
