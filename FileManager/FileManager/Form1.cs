@@ -29,20 +29,18 @@ namespace FileManager
 
             if (!directory.Exists)
             {
-                MessageBox.Show("Каталог не найден.");
+                MessageBox.Show("Требуемый каталог не найден", "Ошибка");
                 return;
             }
 
             MyDataGridView.RowCount = 1;
-            int index = 0;
             foreach (var file in directory.GetFiles()) 
             {
                 MyDataGridView.RowCount++;
-                MyDataGridView.Rows[index].Cells[0].Value = file.Name;
-                MyDataGridView.Rows[index].Cells[1].Value = file.Length;
-                MyDataGridView.Rows[index].Cells[2].Value = file.LastWriteTime; 
-                MyDataGridView.Rows[index].Cells[3].Value = file.CreationTime;
-                index++;                
+                MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[0].Value = file.Name;
+                MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[1].Value = file.Length;
+                MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[2].Value = file.LastWriteTime; 
+                MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[3].Value = file.CreationTime;
             }
         }
 
