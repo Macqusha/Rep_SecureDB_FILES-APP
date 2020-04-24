@@ -31,13 +31,13 @@ namespace FileManager
             //Открываем соединение с БД
             npgSqlConnection1.Open();            
             //Создаем sql-запрос на чтение данных
-            NpgsqlCommand npgSqlCommand1 = new NpgsqlCommand("SELECT * FROM public.\"PoemsTable\"", npgSqlConnection1);
-            NpgsqlDataReader npgSqlDataReader1 = npgSqlCommand1.ExecuteReader();
+            NpgsqlCommand npgSqlCommand = new NpgsqlCommand("SELECT * FROM public.\"PoemsTable\";", npgSqlConnection1);
+            NpgsqlDataReader npgSqlDataReader = npgSqlCommand.ExecuteReader();
 
             MyDataGridView.RowCount = 1;
-            if (npgSqlDataReader1.HasRows)
+            if (npgSqlDataReader.HasRows)
             {
-                foreach (DbDataRecord dbDataRecord in npgSqlDataReader1)
+                foreach (DbDataRecord dbDataRecord in npgSqlDataReader)
                 {
                     MyDataGridView.RowCount++;
                     MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[0].Value = dbDataRecord["Name"];
@@ -46,8 +46,8 @@ namespace FileManager
                     MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[3].Value = dbDataRecord["CreationTime"];
                 }
             }            
-            npgSqlDataReader1.Close();
-            npgSqlCommand1.Dispose();
+            npgSqlDataReader.Close();
+            npgSqlCommand.Dispose();
             npgSqlConnection1.Close();
         }
 
@@ -74,7 +74,127 @@ namespace FileManager
 
         private void but_Synchronize_Click(object sender, EventArgs e)
         {
+            string MessageOfResult = "";
 
+            //Название базы данных: PoemsFileManager
+            //Название таблицы: PoemsList
+            //Порт: 5432
+            //Пароль: 1234
+            String connectionParams = "Server=localhost;Port=5432;User ID=postgres;Password=1234;Database=PoemsFileManager;";
+            NpgsqlConnection npgSqlConnection2 = new NpgsqlConnection(connectionParams);
+            //Открываем соединение с БД
+            npgSqlConnection2.Open();
+            //Создаем sql-запрос на чтение данных
+            NpgsqlCommand npgSqlCommand = new NpgsqlCommand("SELECT * FROM public.\"PoemsTable\";", npgSqlConnection2);
+            NpgsqlDataReader npgSqlDataReader = npgSqlCommand.ExecuteReader();
+
+            //Подготовим перечень файлов их дат последнего изменения из базы данных
+            List<string> fileNames_DB = new List<string>();
+            List<DateTime> fileChanged_DB = new List<DateTime>();
+            while (npgSqlDataReader.Read())
+            {
+                fileNames_DB.Add(npgSqlDataReader.GetValue(0).ToString());
+                fileChanged_DB.Add(Convert.ToDateTime(npgSqlDataReader.GetValue(2)));
+
+            }
+            npgSqlDataReader.Close();
+            npgSqlCommand.Dispose();
+            
+            //Открываем директорию
+            DirectoryInfo directory = new DirectoryInfo(@"E:\Rep_SecureDB_FILES-APP\Poems");
+
+            if (!directory.Exists)
+            {
+                MessageBox.Show("Требуемый каталог не найден", "Ошибка");
+                return;
+            }
+
+            //Начинаем транзакцию
+            npgSqlCommand = new NpgsqlCommand("BEGIN TRANSACTION", npgSqlConnection2);
+            npgSqlCommand.ExecuteNonQuery();
+            npgSqlCommand.Dispose();
+
+            List<string> fileNames_Dir = new List<string>();
+            foreach (var file in directory.GetFiles()) 
+            {
+                //Подготовим перечень всех файлов в директории
+                fileNames_Dir.Add(file.Name);
+
+                if (fileNames_DB.IndexOf(file.Name) == -1) //Файл еще не внесен в БД
+                {
+                    //Внести файл в БД
+                    npgSqlCommand = new 
+                        NpgsqlCommand("INSERT INTO public.\"PoemsTable\" (Name,Length,LastWriteTime,CreationTime) VALUES (" + "'" 
+                        + file.Name + "','" + file.Length + "','" + file.LastWriteTime + "','" + file.CreationTime 
+                        + "');", npgSqlConnection2);
+                    if (npgSqlCommand.ExecuteNonQuery() == 1)
+                    {
+                        MessageOfResult += "Добавлен файл " + file.Name + "\r\n";
+                    }
+                    else
+                    {
+                        MessageOfResult += "Не удалось добавить файл " + file.Name + "\r\n";
+                    }                    
+                    npgSqlCommand.Dispose();
+
+                }
+                else
+                {
+                    //Файл уже есть в директории, проверим актуальность даты его последнего изменения
+                    if (fileChanged_DB[fileNames_DB.IndexOf(file.Name)].ToString() != file.LastWriteTime.ToString())
+                    {
+                        npgSqlCommand = new
+                        NpgsqlCommand("UPDATE public.\"PoemsTable\" SET Length = " + file.Length + ", LastWriteTime = '" +
+                        file.LastWriteTime + "', CreationTime = '" + file.CreationTime + "' WHERE Name = '" + file.Name + "';", npgSqlConnection2);
+                        if (npgSqlCommand.ExecuteNonQuery() == 1)
+                        {
+                            MessageOfResult += "Изменен файл " + file.Name + "\r\n";
+                        }
+                        else
+                        {
+                            MessageOfResult += "Не удалось изменить файл " + file.Name + "\r\n";
+                        }                        
+                        npgSqlCommand.Dispose();
+                    }
+                }
+            }
+
+            //Удалим из базы отсутствующие в директории файлы
+            for (int i = 0; i < fileNames_DB.Count; i++)
+            {
+                if (fileNames_Dir.IndexOf(fileNames_DB[i]) == -1)
+                {
+                    npgSqlCommand = new NpgsqlCommand("DELETE FROM public.\"PoemsTable\" WHERE NAME = '" 
+                        + fileNames_DB[i] + "';", npgSqlConnection2);
+                    if (npgSqlCommand.ExecuteNonQuery() == 1)
+                    {
+                        MessageOfResult += "Удален файл " + fileNames_DB[i] + "\r\n";
+                    }
+                    else
+                    {
+                        MessageOfResult += "Не удалось удалить файл " + fileNames_DB[i] + "\r\n";
+                    }     
+                    npgSqlCommand.Dispose();    
+                }
+
+            }
+
+            if (MessageOfResult != "")
+            {
+                MessageOfResult += "\r\n" + "Синхронизация завершена";
+            }
+            else
+            {
+                MessageOfResult += "Синхронизация завершена без измененией";
+            }
+
+            //Завершение транзакции
+            npgSqlCommand = new NpgsqlCommand("COMMIT;", npgSqlConnection2);
+            npgSqlCommand.ExecuteNonQuery();
+            npgSqlCommand.Dispose();
+
+            MessageBox.Show(MessageOfResult, "Синхронизация");
+            npgSqlConnection2.Close();
         }
     }
 }
