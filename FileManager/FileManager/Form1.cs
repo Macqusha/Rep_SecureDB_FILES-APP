@@ -45,7 +45,11 @@ namespace FileManager
                     MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[2].Value = dbDataRecord["LastWriteTime"];
                     MyDataGridView.Rows[MyDataGridView.RowCount - 2].Cells[3].Value = dbDataRecord["CreationTime"];
                 }
-            }            
+            }
+            else
+            {
+                MessageBox.Show("Таблица базы данных пуста", "Предупреждение");
+            }
             npgSqlDataReader.Close();
             npgSqlCommand.Dispose();
             npgSqlConnection1.Close();
