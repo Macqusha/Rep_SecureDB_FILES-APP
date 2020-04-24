@@ -17,16 +17,18 @@ namespace FileManager
         public Form2()
         {
             InitializeComponent();
+
+            //Настройка соединения с базой данных
             //Название базы данных: PoemsFileManager
-            //Название таблицы: Logs
+            //Пользователь: postgres
             //Порт: 5432
             //Пароль: 1234
+            //Название таблицы: PoemsList
             String connectionParams = "Server=localhost;Port=5432;User ID=postgres;Password=1234;Database=PoemsFileManager;";
-            NpgsqlConnection npgSqlConnection1 = new NpgsqlConnection(connectionParams);
-            //Открываем соединение с БД
-            npgSqlConnection1.Open();
-            //Создаем sql-запрос на чтение данных
-            NpgsqlCommand npgSqlCommand = new NpgsqlCommand("SELECT * FROM public.\"Logs\";", npgSqlConnection1);
+            NpgsqlConnection npgSqlConnection3 = new NpgsqlConnection(connectionParams);
+            npgSqlConnection3.Open();
+            //Создаем sql-запрос на чтение данных из таблицы логов
+            NpgsqlCommand npgSqlCommand = new NpgsqlCommand("SELECT * FROM public.\"Logs\";", npgSqlConnection3);
             NpgsqlDataReader npgSqlDataReader = npgSqlCommand.ExecuteReader();
 
             MyDataGridView.RowCount = 1;
@@ -47,7 +49,7 @@ namespace FileManager
             }
             npgSqlDataReader.Close();
             npgSqlCommand.Dispose();
-            npgSqlConnection1.Close();
+            npgSqlConnection3.Close();
         }
     }
 }
