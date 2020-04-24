@@ -90,12 +90,15 @@ namespace FileManager
 
             //Подготовим перечень файлов их дат последнего изменения из базы данных
             List<string> fileNames_DB = new List<string>();
+            List<long> fileLength_DB = new List<long>();
             List<DateTime> fileChanged_DB = new List<DateTime>();
+            List<DateTime> fileCreated_DB = new List<DateTime>();
             while (npgSqlDataReader.Read())
             {
                 fileNames_DB.Add(npgSqlDataReader.GetValue(0).ToString());
+                fileLength_DB.Add(Convert.ToInt64(npgSqlDataReader.GetValue(1)));
                 fileChanged_DB.Add(Convert.ToDateTime(npgSqlDataReader.GetValue(2)));
-
+                fileCreated_DB.Add(Convert.ToDateTime(npgSqlDataReader.GetValue(3)));
             }
             npgSqlDataReader.Close();
             npgSqlCommand.Dispose();
@@ -130,6 +133,14 @@ namespace FileManager
                     if (npgSqlCommand.ExecuteNonQuery() == 1)
                     {
                         MessageOfResult += "Добавлен файл " + file.Name + "\r\n";
+
+                        //Добавление логов
+                        NpgsqlCommand npgSqlCommandLOGS = new
+                        NpgsqlCommand("INSERT INTO public.\"Logs\" VALUES (now(), 'Добавлен', '"
+                        + file.Name + "', null, '" + file.Length + "', null, '" + file.LastWriteTime + "','" + file.CreationTime
+                        + "');", npgSqlConnection2);
+                        npgSqlCommandLOGS.ExecuteNonQuery();
+                        npgSqlCommandLOGS.Dispose();
                     }
                     else
                     {
@@ -141,7 +152,8 @@ namespace FileManager
                 else
                 {
                     //Файл уже есть в директории, проверим актуальность даты его последнего изменения
-                    if (fileChanged_DB[fileNames_DB.IndexOf(file.Name)].ToString() != file.LastWriteTime.ToString())
+                    int index_DB = fileNames_DB.IndexOf(file.Name);
+                    if (fileChanged_DB[index_DB].ToString() != file.LastWriteTime.ToString())
                     {
                         npgSqlCommand = new
                         NpgsqlCommand("UPDATE public.\"PoemsTable\" SET Length = " + file.Length + ", LastWriteTime = '" +
@@ -149,6 +161,14 @@ namespace FileManager
                         if (npgSqlCommand.ExecuteNonQuery() == 1)
                         {
                             MessageOfResult += "Изменен файл " + file.Name + "\r\n";
+
+                            //Добавление логов
+                            NpgsqlCommand npgSqlCommandLOGS = new
+                                NpgsqlCommand("INSERT INTO public.\"Logs\" VALUES (now(), 'Изменен', '" + file.Name +
+                                "', '" + fileLength_DB[index_DB] + "', '" + file.Length + "', '"+ fileChanged_DB[index_DB] + "', '" +
+                                file.LastWriteTime + "','" + file.CreationTime + "');", npgSqlConnection2);
+                            npgSqlCommandLOGS.ExecuteNonQuery();
+                            npgSqlCommandLOGS.Dispose();
                         }
                         else
                         {
@@ -169,6 +189,14 @@ namespace FileManager
                     if (npgSqlCommand.ExecuteNonQuery() == 1)
                     {
                         MessageOfResult += "Удален файл " + fileNames_DB[i] + "\r\n";
+
+                        //Добавление логов
+                        NpgsqlCommand npgSqlCommandLOGS = new
+                                NpgsqlCommand("INSERT INTO public.\"Logs\" VALUES (now(), 'Удален', '" + fileNames_DB[i] +
+                                "', '" + fileLength_DB[i] + "', null, '" + fileChanged_DB[i] + "', null,'" +
+                                fileCreated_DB[i] + "');", npgSqlConnection2);
+                        npgSqlCommandLOGS.ExecuteNonQuery();
+                        npgSqlCommandLOGS.Dispose();
                     }
                     else
                     {
@@ -195,6 +223,13 @@ namespace FileManager
 
             MessageBox.Show(MessageOfResult, "Синхронизация");
             npgSqlConnection2.Close();
+        }
+
+        private void but_Logs_Click(object sender, EventArgs e)
+        {
+            Hide();
+            new Form2().ShowDialog();
+            Show();
         }
     }
 }

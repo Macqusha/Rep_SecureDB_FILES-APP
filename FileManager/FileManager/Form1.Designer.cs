@@ -37,13 +37,14 @@
             this.FileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileChanged = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.but_Logs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MyDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // but_Load_from_DB
             // 
-            this.but_Load_from_DB.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.but_Load_from_DB, "but_Load_from_DB");
+            this.but_Load_from_DB.ForeColor = System.Drawing.Color.Black;
             this.but_Load_from_DB.Name = "but_Load_from_DB";
             this.but_Load_from_DB.UseVisualStyleBackColor = true;
             this.but_Load_from_DB.Click += new System.EventHandler(this.but_Load_from_DB_Click);
@@ -64,6 +65,7 @@
             // 
             // MyDataGridView
             // 
+            resources.ApplyResources(this.MyDataGridView, "MyDataGridView");
             this.MyDataGridView.BackgroundColor = System.Drawing.Color.MintCream;
             this.MyDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.MyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -73,8 +75,8 @@
             this.FileChanged,
             this.FileCreated});
             this.MyDataGridView.GridColor = System.Drawing.Color.DarkSlateGray;
-            resources.ApplyResources(this.MyDataGridView, "MyDataGridView");
             this.MyDataGridView.Name = "MyDataGridView";
+            this.MyDataGridView.ReadOnly = true;
             this.MyDataGridView.RowTemplate.Height = 24;
             // 
             // FileName
@@ -101,11 +103,19 @@
             this.FileCreated.Name = "FileCreated";
             this.FileCreated.ReadOnly = true;
             // 
+            // but_Logs
+            // 
+            resources.ApplyResources(this.but_Logs, "but_Logs");
+            this.but_Logs.Name = "but_Logs";
+            this.but_Logs.UseVisualStyleBackColor = true;
+            this.but_Logs.Click += new System.EventHandler(this.but_Logs_Click);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::FileManager.Properties.Resources.main_background;
+            this.Controls.Add(this.but_Logs);
             this.Controls.Add(this.MyDataGridView);
             this.Controls.Add(this.but_Synchronize);
             this.Controls.Add(this.but_Load_from_Catalog);
@@ -125,6 +135,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FileSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileChanged;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileCreated;
+        private System.Windows.Forms.Button but_Logs;
     }
 }
 
